@@ -5,9 +5,12 @@ require("dotenv/config");
 const https = require("https");
 const path  = require("path");
 const fs = require("fs");
+const cors = require("cors");
 
 
 const port = 3000;
+
+app.use(cors())
 
 mongoose.connect(process.env.DB_CONNECTION, 
     ()=>{
