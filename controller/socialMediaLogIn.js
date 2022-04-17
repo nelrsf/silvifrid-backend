@@ -44,8 +44,8 @@ router.get("/handleauth", async (req, response)=>{
       
       const request = https.request(options, res => {
         console.log(`body: ${req_body}`);
-        res.on("error",(err)=>{
-            console.log(err.message);
+        res.on('data',d=>{
+            console.log(d);
         })
         response.send(res.statusCode);
       })
