@@ -33,7 +33,7 @@ router.get("/handleauth", async (req, res)=>{
         "redirect_uri": redirect_uri,
         "code":code
     });
-    const options = {
+    /*const options = {
         hostname: 'https://api.instagram.com/oauth/access_token',
         path: '/',
         method: 'POST',
@@ -51,7 +51,7 @@ router.get("/handleauth", async (req, res)=>{
       })
       
       request.write(req_body)
-      request.end()
+      request.end()*/
 });
 
 
