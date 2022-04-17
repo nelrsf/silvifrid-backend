@@ -5,7 +5,7 @@ const apiIG = require("instagram-node").instagram();
 const url = require('url');
 
 
-var redirect_uri = 'https://silvifrid-backend.herokuapp.com/login/handleauth';
+var redirect_uri = 'https://silvifrid-server.herokuapp.com/login/handleauth';
 var appID = "1383539172068627";
 
 
