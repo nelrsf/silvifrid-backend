@@ -16,7 +16,7 @@ router.get("/instagram", async (req, res)=>{
 });
 
 router.get("/handleauth", async (req, res)=>{
-    //console.log(res);
+    console.log(res);
     res.send("ok");
 })
 
