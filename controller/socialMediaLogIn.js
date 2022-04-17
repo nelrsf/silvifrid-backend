@@ -22,7 +22,7 @@ router.get("/instagram", async (req, res)=>{
 });
 
 
-router.get("/handleauth", async (req, res)=>{
+router.get("/handleauth", async (req, response)=>{
     r_url = req.protocol + '://' + req.get('host') + req.originalUrl;
     var req_url = new URL(r_url);
     var code = req_url.searchParams.get('code');
@@ -43,14 +43,14 @@ router.get("/handleauth", async (req, res)=>{
       }
       
       const request = https.request(options, res => {
-        console.log(`statusCode: ${res.headers.location}`)
+        console.log(`statusCode: ${res.headers.authorization}`);
+        response.send("fin");
       })
       
       request.on('error', error => {
         console.error(error)
       })
       
-      console.log(req_body)
       request.write(req_body)
       request.end()
 });
