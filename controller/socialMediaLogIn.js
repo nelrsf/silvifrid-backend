@@ -3,12 +3,16 @@ const { join } = require("path");
 const router = express.Router();
 const apiIG = require("instagram-node").instagram();
 const url = require('url');
+var bodyParser = require('body-parser');
 
 
 var redirect_uri = 'https://silvifrid-server.herokuapp.com/login/handleauth';
 var appID = "1383539172068627";
 var appSecret = "0a14749bb5673a79961efc5486510719";
 
+
+router.use(bodyParser.urlencoded({ extended: false }));
+router.use(bodyParser.json());
 
 router.get("/instagram", async (req, res)=>{
     var url_ig ="https://api.instagram.com/oauth/authorize?client_id="
@@ -30,8 +34,10 @@ router.get("/handleauth", async (req, res)=>{
         "redirect_uri": redirect_uri,
         "code":code
     };
-    router.post("https://api.instagram.com/oauth/access_token", async(req,res)=>{
-        await console.log(res);
+    router.post("https://api.instagram.com/oauth/access_token", async (req,res)=>{
+        req.body = new_req_body;
+        res.send(res.body)
+        console.log(res);
     })
 })
 
