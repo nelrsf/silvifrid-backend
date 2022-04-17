@@ -6,6 +6,7 @@
     "express": "^4.17.3",
     "fs": "^0.0.1-security",
     "https": "^1.0.0",
+    "instagram-node": "^0.5.8",
     "mongoose": "^6.2.10",
     "nodejs": "^0.0.0",
     "openssl": "^2.0.0",

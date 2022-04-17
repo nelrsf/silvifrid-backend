@@ -33,5 +33,8 @@ const sslServer = https.createServer({
 ,app)
 
 
+const auth = require("./controller/socialMediaLogIn");
+app.use("/login",auth);
+
 //sslServer.listen(process.env.PORT||port)
 app.listen(process.env.PORT||port)
