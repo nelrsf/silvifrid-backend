@@ -34,8 +34,8 @@ router.get("/handleauth", async (req, res)=>{
         "code":code
     });
     const options = {
-        hostname: 'https://api.instagram.com/oauth/access_token',
-        path: '/',
+        hostname: 'https://api.instagram.com',
+        path: '/oauth/access_token',
         method: 'POST',
         header: {
             'Content-Type':'application/json'
