@@ -26,7 +26,7 @@ router.get("/instagram", async (req, res)=>{
 router.get("/handleauth", async (req, res)=>{
     r_url = req.protocol + '://' + req.get('host') + req.originalUrl;
     var req_url = new URL(r_url);
-    var code = res.send(req_url.searchParams.get('code'));
+    var code = req_url.searchParams.get('code');
     var new_req_body = {
         "client_id": appID,
         "client_secret": appSecret,
@@ -34,6 +34,7 @@ router.get("/handleauth", async (req, res)=>{
         "redirect_uri": redirect_uri,
         "code":code
     };
+    console.log(new_req_body);
     router.post("https://api.instagram.com/oauth/access_token", async (req,res)=>{
         req.body = new_req_body;
         res.send(res.body)
