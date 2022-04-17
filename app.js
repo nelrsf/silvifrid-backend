@@ -25,7 +25,7 @@ app.use("/getproducts", apiProducts)
 const apiAssets = require("./controller/getAssets");
 app.use("/getassets", apiAssets)
 
-//const auth = require("./controller/socialMediaLogIn");
+const auth = require("./controller/socialMediaLogIn");
 //app.use("/login", auth);
 
 app.listen(process.env.PORT||port)
