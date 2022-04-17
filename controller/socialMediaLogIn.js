@@ -26,9 +26,8 @@ router.get("/instagram", async (req, res)=>{
 
 router.get("/handleauth", async (req, res)=>{
     r_url = req.protocol + '://' + req.get('host') + req.originalUrl;
-    //var req_url = new URL(r_url);
-
-    //res.send(req_url.searchParams.get('code'));
+    var req_url = new URL(r_url);
+    res.send(req_url.searchParams.get('code'));
 })
 
 module.exports = router;
