@@ -25,12 +25,10 @@ app.use("/getproducts", apiProducts)
 const apiAssets = require("./controller/getAssets");
 app.use("/getassets", apiAssets)
 
-const sslServer = https.createServer({
+/*const sslServer = https.createServer({
     key: fs.readFileSync(path.join(__dirname,'cert','key.pem')),
     cert: fs.readFileSync(path.join(__dirname, 'cert','cert.pem'))
-}
-
-,app)
+},app)*/
 
 
 const auth = require("./controller/socialMediaLogIn");
