@@ -9,7 +9,6 @@
     "instagram-node": "^0.5.8",
     "mongoose": "^6.2.10",
     "nodejs": "^0.0.0",
-    "nodemon": "^2.0.15",
     "path": "^0.12.7"
   },
   "name": "silvifrid-backend",
