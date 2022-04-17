@@ -1,8 +1,6 @@
 const express = require("express");
-const { join } = require("path");
 const router = express.Router();
-const apiIG = require("instagram-node").instagram();
-const url = require('url');
+const https = require('https');
 var bodyParser = require('body-parser');
 
 
@@ -24,30 +22,36 @@ router.get("/instagram", async (req, res)=>{
 });
 
 
-var new_req_body = {
-    "client_id": appID,
-    "client_secret": appSecret,
-    "grant_type": "authorization_code",
-    "redirect_uri": redirect_uri,
-    "code":""
-};
-
 router.get("/handleauth", async (req, res)=>{
     r_url = req.protocol + '://' + req.get('host') + req.originalUrl;
     var req_url = new URL(r_url);
     var code = req_url.searchParams.get('code');
-    new_req_body.code = code;
-    router.post("/postinfo", async (req,res)=>{
-        req.body = new_req_body;
-        res.send("post function");
-        console.log(res.body);
-    })
-})
+    var req_body = JSON.stringify({
+        "client_id": appID,
+        "client_secret": appSecret,
+        "grant_type": "authorization_code",
+        "redirect_uri": redirect_uri,
+        "code":code
+    });
+    const options = {
+        hostname: 'https://api.instagram.com/oauth/access_token',
+        path: '/',
+        method: 'POST'
+      }
+      
+      const request = https.request(options, res => {
+        console.log(`statusCode: ${res.statusCode}`)
+      })
+      
+      request.on('error', error => {
+        console.error(error)
+      })
+      
+      request.write(req_body)
+      request.end()
+});
 
-router.post("/postinfo", async (req,res)=>{
-    req.body = new_req_body;
-    res.send("post function");
-    console.log(res.body);
-})
+
+
 
 module.exports = router;
