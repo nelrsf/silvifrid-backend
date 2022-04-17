@@ -8,11 +8,17 @@ apiIG.use({
     client_secret: "24673a3f0325b2492d62a4273588c270"
 });
 
-var redirect_uri = 'http://localhost:3000/login/handleauth';
+var redirect_uri = 'https://silvifrid-backend.herokuapp.com/login/handleauth';
+var appID = "1383539172068627";
 
 
 router.get("/instagram", async (req, res)=>{
-    //res.redirect(apiIG.get_authorization_url(redirect_uri,{ scope: ['basic']}));
+    var url_ig ="https://api.instagram.com/oauth/authorize?client_id="
+    + appID
+    +"&redirect_uri="
+    + redirect_uri
+    +"&scope=user_profile,user_media&response_type=code";
+    res.redirect(url_ig);
 });
 
 router.get("/handleauth", async (req, res)=>{
