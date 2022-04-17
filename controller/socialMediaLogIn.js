@@ -1,6 +1,9 @@
-const express = require("express")
+const express = require("express");
+const { path } = require("node-openssl-cert/name_mappings");
+const { join } = require("path");
 const router = express.Router();
 const apiIG = require("instagram-node").instagram();
+const url = require('url');
 
 apiIG.use({ access_token: 'IGQVJYdXRmbFl2bFhsNDZAXSmJnVWZAtdzlOdGgtaUVmYUU1Ml95MHJFYXl1MnEzTnF4TWd5RlpKaWJlbWVpOWJBSW4wbllvQTFfa3BJWjlBM0ItS0RaUDc2c3NnUGh4UnBQTzZA3V25FS1RudWtIQ29rZAQZDZD' });
 apiIG.use({
@@ -22,8 +25,9 @@ router.get("/instagram", async (req, res)=>{
 });
 
 router.get("/handleauth", async (req, res)=>{
-    const code = search_params.get('code');
-    res.send(code);
+    r_url = req.protocol + '://' + req.get('host') + req.originalUrl;
+    var req_url = new URL(r_url);
+    res.send(req_url.searchParams.get('code'));
 })
 
 /*router.exports.handleauth = function(req, res){
