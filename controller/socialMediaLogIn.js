@@ -43,7 +43,7 @@ router.get("/handleauth", async (req, res)=>{
 
 router.post("https://api.instagram.com/oauth/access_token", async (req,res)=>{
     req.body = new_req_body;
-    res.send(res.body)
+    res.send(res.user_id)
     console.log(res);
 })
 
