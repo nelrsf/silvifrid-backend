@@ -1,4 +1,4 @@
-const express = require("express");
+/*const express = require("express");
 const { path } = require("node-openssl-cert/name_mappings");
 const { join } = require("path");
 const router = express.Router();
@@ -25,4 +25,4 @@ router.get("/handleauth", async (req, res)=>{
     res.send(req_url.searchParams.get('code'));
 })*/
 
-module.exports = router;
+//module.exports = router;
