@@ -38,7 +38,8 @@ router.get("/handleauth", async (req, response)=>{
         path: '/oauth/access_token',
         method: 'POST',
         header: {
-            'Content-Type':'application/json'
+            'Content-Type':'application/x-www-form-urlencoded',
+            'Content-Length': req_body.length
         }
       }
       
