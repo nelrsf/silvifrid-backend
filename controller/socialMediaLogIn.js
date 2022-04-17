@@ -30,16 +30,4 @@ router.get("/handleauth", async (req, res)=>{
     res.send(req_url.searchParams.get('code'));
 })
 
-/*router.exports.handleauth = function(req, res){
-    apiIG.authorize_user(req.query.code, redirect_uri, function(err, result){
-        if(err){
-            console.log(err.body);
-            res.send("error en login");
-        }else{
-            console.log("acces token "+ result.access_token);
-            res.send("ok");
-        }
-    })
-}*/
-
 module.exports = router;
