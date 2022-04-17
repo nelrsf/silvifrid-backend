@@ -10,7 +10,6 @@
     "mongoose": "^6.2.10",
     "nodejs": "^0.0.0",
     "nodemon": "^2.0.15",
-    "openssl": "^2.0.0",
     "path": "^0.12.7"
   },
   "name": "silvifrid-backend",
