@@ -22,8 +22,8 @@ router.get("/instagram", async (req, res)=>{
 });
 
 router.get("/handleauth", async (req, res)=>{
-    console.log(res);
-    res.send("ok");
+    const code = search_params.get('code');
+    res.send(code);
 })
 
 /*router.exports.handleauth = function(req, res){
