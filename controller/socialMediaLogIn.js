@@ -23,23 +23,28 @@ router.get("/instagram", async (req, res)=>{
     res.redirect(url_ig);
 });
 
+
+var new_req_body = {
+    "client_id": appID,
+    "client_secret": appSecret,
+    "grant_type": "authorization_code",
+    "redirect_uri": redirect_uri,
+    "code":""
+};
+
 router.get("/handleauth", async (req, res)=>{
     r_url = req.protocol + '://' + req.get('host') + req.originalUrl;
     var req_url = new URL(r_url);
     var code = req_url.searchParams.get('code');
-    var new_req_body = {
-        "client_id": appID,
-        "client_secret": appSecret,
-        "grant_type": "authorization_code",
-        "redirect_uri": redirect_uri,
-        "code":code
-    };
+    new_req_body.code = code;
     console.log(new_req_body);
-    res.post("https://api.instagram.com/oauth/access_token", async (req,res)=>{
-        req.body = new_req_body;
-        res.send(res.body)
-        console.log(res);
-    })
+    res.redirect("https://api.instagram.com/oauth/access_token")
+})
+
+router.post("https://api.instagram.com/oauth/access_token", async (req,res)=>{
+    req.body = new_req_body;
+    res.send(res.body)
+    console.log(res);
 })
 
 module.exports = router;
