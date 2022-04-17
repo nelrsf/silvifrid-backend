@@ -7,6 +7,7 @@ const url = require('url');
 
 var redirect_uri = 'https://silvifrid-server.herokuapp.com/login/handleauth';
 var appID = "1383539172068627";
+var appSecret = "0a14749bb5673a79961efc5486510719";
 
 
 router.get("/instagram", async (req, res)=>{
@@ -21,7 +22,17 @@ router.get("/instagram", async (req, res)=>{
 router.get("/handleauth", async (req, res)=>{
     r_url = req.protocol + '://' + req.get('host') + req.originalUrl;
     var req_url = new URL(r_url);
-    res.send(req_url.searchParams.get('code'));
+    var code = res.send(req_url.searchParams.get('code'));
+    var new_req_body = {
+        "client_id": appID,
+        "client_secret": appSecret,
+        "grant_type": "authorization_code",
+        "redirect_uri": redirect_uri,
+        "code":code
+    };
+    router.post("https://api.instagram.com/oauth/access_token", new_req_body, async(req,res)=>{
+        await console.log(res);
+    })
 })
 
 module.exports = router;
