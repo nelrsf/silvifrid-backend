@@ -37,10 +37,10 @@ router.get("/handleauth", async (req, res)=>{
     var req_url = new URL(r_url);
     var code = req_url.searchParams.get('code');
     new_req_body.code = code;
-    res.redirect("https://api.instagram.com/oauth/access_token")
+    router.use("/postinfo")
 })
 
-router.post("https://api.instagram.com/oauth/access_token", async (req,res)=>{
+router.post("/postinfo", async (req,res)=>{
     req.body = new_req_body;
     res.send("post function");
     console.log(res.body);
