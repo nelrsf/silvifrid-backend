@@ -43,7 +43,7 @@ router.get("/handleauth", async (req, res)=>{
       }
       
       const request = https.request(options, res => {
-        console.log(`statusCode: ${res.headers}`)
+        console.log(`statusCode: ${res.headers.location}`)
       })
       
       request.on('error', error => {
