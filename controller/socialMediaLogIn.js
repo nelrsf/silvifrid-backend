@@ -37,7 +37,7 @@ router.get("/handleauth", async (req, response)=>{
         method: 'POST',
         header: {
             'HTTP-Version': 'HTTP/1.1',
-            'Content-Type':'application/x-www-form-urlencoded',
+            'Content-Type':'x-www-form-urlencoded',
          },
         form: req_body
       }
