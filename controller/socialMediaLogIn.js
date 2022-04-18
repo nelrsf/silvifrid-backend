@@ -26,13 +26,13 @@ router.get("/handleauth", async (req, response)=>{
     r_url = req.protocol + '://' + req.get('host') + req.originalUrl;
     var req_url = new URL(r_url);
     var code = req_url.searchParams.get('code');
-    /*var req_body = {
+    let req_body = {
         "client_id": appID,
         "client_secret": appSecret,
         "grant_type": "authorization_code",
         "redirect_uri": redirect_uri,
         "code":code
-    };*/
+    };
 
     /*const req_body = "client_id:"+ appID
                       +"\nclient_secret:"+appSecret
@@ -45,16 +45,13 @@ router.get("/handleauth", async (req, response)=>{
         header: {
             'Content-Type':'application/x-www-form-urlencoded',
          },
-        form: {
-            'client_id': appID,
-            'client_secret': appSecret,
-            'grant_type': 'authorization_code',
-            'redirect_uri': redirect_uri,
-            'code':code
-        }
       }
       
-      const request = https.request('https://api.instagram.com/oauth/access_token',options, res => {
+      const request = https.request('https://api.instagram.com/oauth/access_token',options,(req,res,next)=>{
+         console.log(req);
+         console.log(res);
+         next();
+      } , res => {
         console.log(`form: ${options.form['code']}`);
         console.log(`header: ${options.header["Content-Type"]}`);
         let data ="";
@@ -71,7 +68,7 @@ router.get("/handleauth", async (req, response)=>{
         console.error(error)
       })
       
-      //request.write(req_body)
+      request.write(req_body)
       request.end()
 });
 
