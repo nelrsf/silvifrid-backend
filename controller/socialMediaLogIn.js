@@ -34,7 +34,7 @@ router.get("/handleauth", async (req, response)=>{
         "code":code
     };*/
 
-    const req_body = "client_id="+ appID
+    const req_body = encodeURI("client_id=")+ appID
                       +"&client_secret="+appSecret
                       +"&grant_type=authorization_code"
                       +"&redirect_uri="+redirect_uri
