@@ -47,13 +47,8 @@ router.get("/handleauth", async (req, response)=>{
          },
       }
 
-        const gurl = "https://api.instagram.com/oauth/access_token?"+"client_id="+appID
-                      +"&client_secret="+appSecret
-                      +"&grant_type=authorization_code"
-                      +"&redirect_uri="+redirect_uri
-                      +"&code="+code;
       
-      const request = https.request("https://api.instagram.com/oauth/access_token", res => {
+      const request = https.request("https://api.instagram.com/oauth/access_token",options, res => {
         console.log(req_body);
         console.log(`par1 : ${res.body}`);
         let data ="";
