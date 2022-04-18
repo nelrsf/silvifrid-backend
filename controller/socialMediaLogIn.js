@@ -26,15 +26,15 @@ router.get("/handleauth", async (req, response)=>{
     r_url = req.protocol + '://' + req.get('host') + req.originalUrl;
     var req_url = new URL(r_url);
     var code = req_url.searchParams.get('code');
-    var req_body = {
+    /*var req_body = {
         "client_id": appID,
         "client_secret": appSecret,
         "grant_type": "authorization_code",
         "redirect_uri": redirect_uri,
         "code":code
-    };
+    };*/
 
-    //const req_body = `${encodeURI('client_id')}=${encodeURI(appID)}&${encodeURI('client_secret')}=${encodeURI(appSecret)}&${encodeURI('grant_type')}=${encodeURI('authorization_code')}&${encodeURI('redirect_uri')}=${encodeURI(redirect_uri)}&${encodeURI('code')}=${encodeURI(code)}`;
+    const req_body = `${encodeURI('client_id')}=${encodeURI(appID)}&${encodeURI('client_secret')}=${encodeURI(appSecret)}&${encodeURI('grant_type')}=${encodeURI('authorization_code')}&${encodeURI('redirect_uri')}=${encodeURI(redirect_uri)}&${encodeURI('code')}=${encodeURI(code)}`;
 
     const options = {
         method: 'POST',
@@ -49,12 +49,12 @@ router.get("/handleauth", async (req, response)=>{
         console.log(`form client id: ${options.form.code}`);
         console.log(`header: ${options.header["Content-Type"]}`);
         let data ="";
-        /*res.on('data',chunk=>{
+        res.on('data',chunk=>{
             data+=chunk;
         })
         res.on('end',()=>{
             console.log(data);
-        })*/
+        })
         response.send(res.statusCode);
       })
       
