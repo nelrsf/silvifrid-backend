@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 
 
 var redirect_uri = 'https://silvifrid-server.herokuapp.com/login/handleauth';
-var appID = "1383539172068627";
+var appID = 1383539172068627;
 var appSecret = "0a14749bb5673a79961efc5486510719";
 
 
