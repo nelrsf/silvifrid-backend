@@ -10,7 +10,7 @@ var appSecret = "0a14749bb5673a79961efc5486510719";
 
 
 router.use(bodyParser.urlencoded({ extended: true }));
-//router.use(bodyParser.json());
+router.use(bodyParser.json());
 
 router.get("/instagram", async (req, res)=>{
     var url_ig ="https://api.instagram.com/oauth/authorize?client_id="
