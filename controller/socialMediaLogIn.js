@@ -44,7 +44,7 @@ router.get("/handleauth", async (req, response)=>{
       }
 
       
-      const request = https.request("http://localhost:3000/testpost",options, res => {
+      const request = https.request("https://api.instagram.com/oauth/access_token",options, res => {
         let data ="";
         res.on('data',chunk=>{
             data+=chunk;
