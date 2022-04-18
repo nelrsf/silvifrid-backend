@@ -26,19 +26,19 @@ router.get("/handleauth", async (req, response)=>{
     r_url = req.protocol + '://' + req.get('host') + req.originalUrl;
     var req_url = new URL(r_url);
     var code = req_url.searchParams.get('code');
-    let req_body = {
+    /*let req_body = {
         "client_id": appID,
         "client_secret": appSecret,
         "grant_type": "authorization_code",
         "redirect_uri": redirect_uri,
         "code":code
-    };
+    };*/
 
-    /*const req_body = "client_id:"+ appID
-                      +"\nclient_secret:"+appSecret
-                      +"\ngrant_type:authorization_code"
-                      +"\nredirect_uri:"+redirect_uri
-                      +"\ncode:"+code;*/
+    const req_body = "client_id="+ appID
+                      +"&client_secret="+appSecret
+                      +"&grant_type=authorization_code"
+                      +"&redirect_uri="+redirect_uri
+                      +"&code="+code;
 
     const options = {
         method: 'POST',
