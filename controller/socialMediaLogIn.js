@@ -26,23 +26,24 @@ router.get("/handleauth", async (req, response)=>{
     r_url = req.protocol + '://' + req.get('host') + req.originalUrl;
     var req_url = new URL(r_url);
     var code = req_url.searchParams.get('code');
-    var req_body = JSON.stringify({
+    var req_body = {
         "client_id": appID,
         "client_secret": appSecret,
         "grant_type": "authorization_code",
         "redirect_uri": redirect_uri,
         "code":code
-    });
+    };
     const options = {
         method: 'POST',
         header: {
+            'HTTP-Version': 'HTTP/1.1',
             'Content-Type':'application/x-www-form-urlencoded',
-            'Content-Length': req_body.length
-        }
+         },
+        form: req_body
       }
       
-      const request = https.request('https://api.instagram.com/oauth/access_token',options, res => {
-        console.log(`body: ${req_body}`);
+      const request = https.request('https://api.instagram.com/oauth/access_token',options, (r, res) => {
+        console.log(`body: ${r}`);
         let data ="";
         res.on('data',chunk=>{
             data+=chunk;
@@ -57,7 +58,7 @@ router.get("/handleauth", async (req, response)=>{
         console.error(error)
       })
       
-      request.write(req_body)
+//      request.write(req_body)
       request.end()
 });
 
