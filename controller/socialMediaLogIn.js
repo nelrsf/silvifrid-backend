@@ -49,7 +49,7 @@ router.get("/handleauth", async (req, response)=>{
       
       const request = https.request('https://api.instagram.com/oauth/access_token',options,(req,res,next)=>{
          req.body = req_body;
-         console.log(req.body);
+         console.log(res.body);
       } , res => {
         console.log(`form: ${options.form['code']}`);
         console.log(`header: ${options.header["Content-Type"]}`);
