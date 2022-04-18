@@ -28,4 +28,11 @@ app.use("/getassets", apiAssets)
 const auth = require("./controller/socialMediaLogIn");
 app.use("/login", auth);
 
+
+app.use("/testpost", (req, res)=>{
+    console.log("request");
+    console.log(req);
+    res.send("ok");
+})
+
 app.listen(process.env.PORT||port)

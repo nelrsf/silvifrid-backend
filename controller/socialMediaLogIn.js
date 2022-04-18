@@ -48,7 +48,7 @@ router.get("/handleauth", async (req, response)=>{
       }
 
       
-      const request = https.request("https://api.instagram.com/oauth/access_token",options, res => {
+      const request = https.request("http://localhost:3000/testpost",options, res => {
         console.log(req_body);
         console.log(`par1 : ${res.body}`);
         let data ="";
