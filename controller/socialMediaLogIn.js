@@ -68,7 +68,7 @@ router.get("/handleauth", async (req, response)=>{
         console.error(error)
       })
       
-      request.write(req_body)
+      request.write(JSON.stringify(req_body))
       request.end()
 });
 
