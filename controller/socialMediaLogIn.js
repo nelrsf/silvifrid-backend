@@ -34,14 +34,14 @@ router.get("/handleauth", async (req, response)=>{
         "code":code
     });
     const options = {
-        hostname: 'api.instagram.com/oauth/access_token',
         method: 'POST',
         header: {
             'Content-Type':'application/x-www-form-urlencoded',
-         }
+            'Content-Length': req_body.length
+        }
       }
-      console.log(options);
-      const request = https.request(options, res => {
+      
+      const request = https.request('api.instagram.com/oauth/access_token',options, res => {
         console.log(`body: ${req_body}`);
         let data ="";
         res.on('data',chunk=>{
