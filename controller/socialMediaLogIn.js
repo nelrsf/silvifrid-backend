@@ -38,10 +38,9 @@ router.get("/handleauth", async (req, response)=>{
         method: 'POST',
         header: {
             'Content-Type':'application/x-www-form-urlencoded',
-            'Content-Length': req_body.length
-        }
+         }
       }
-      
+      console.log(options);
       const request = https.request(options, res => {
         console.log(`body: ${req_body}`);
         let data ="";
