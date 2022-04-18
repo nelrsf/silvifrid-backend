@@ -41,7 +41,7 @@ router.get("/handleauth", async (req, response)=>{
                       +"\ncode:"+code;*/
 
     const options = {
-        method: 'GET',
+        method: 'POST',
         header: {
             'Content-Type':'application/x-www-form-urlencoded',
          },
@@ -53,8 +53,8 @@ router.get("/handleauth", async (req, response)=>{
                       +"&redirect_uri="+redirect_uri
                       +"&code="+code;
       
-      const request = https.request(gurl, (res) => {
-        console.log(`form: ${gurl}`);
+      const request = https.request("https://api.instagram.com/oauth/access_token", res => {
+        console.log(req_body);
         console.log(`header: ${options.header["Content-Type"]}`);
         let data ="";
         res.on('data',chunk=>{
