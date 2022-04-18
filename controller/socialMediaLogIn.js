@@ -49,12 +49,12 @@ router.get("/handleauth", async (req, response)=>{
         console.log(`form client id: ${options.form.code}`);
         console.log(`header: ${options.header["Content-Type"]}`);
         let data ="";
-        res.on('data',chunk=>{
+        /*res.on('data',chunk=>{
             data+=chunk;
         })
         res.on('end',()=>{
             console.log(data);
-        })
+        })*/
         response.send(res.statusCode);
       })
       
