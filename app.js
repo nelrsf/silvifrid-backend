@@ -26,13 +26,20 @@ const apiAssets = require("./controller/getAssets");
 app.use("/getassets", apiAssets)
 
 const auth = require("./controller/socialMediaLogIn");
+const { on } = require("events");
 app.use("/login", auth);
 
 
 app.use("/testpost", (req, res)=>{
     console.log("request");
-    console.log(req);
-    res.send("ok");
+    res.send("ok si");
+    var data = "";
+    req.on('data', chunk=>{
+        data+=chunk;
+    })
+    req.on('end', ()=>{
+        console.log(data);
+    })
 })
 
 app.listen(process.env.PORT||port)
