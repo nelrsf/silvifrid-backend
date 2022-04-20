@@ -2,9 +2,6 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 require("dotenv/config");
-const https = require("https");
-const path  = require("path");
-const fs = require("fs");
 const cors = require("cors");
 
 
@@ -25,21 +22,8 @@ app.use("/getproducts", apiProducts)
 const apiAssets = require("./controller/getAssets");
 app.use("/getassets", apiAssets)
 
-const auth = require("./controller/socialMediaLogIn");
-app.use("/login", auth);
-
-
-app.use("/testpost", (req, res)=>{
-    console.log("request");
-    res.send("ok si");
-    var data = "";
-    req.on('data', chunk=>{
-        data+=chunk;
-    })
-    req.on('end', ()=>{
-        console.log(data);
-    })
-})
+const auth = require("./controller/authController");
+app.use("/login", auth)
 
 
 

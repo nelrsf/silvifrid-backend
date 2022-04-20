@@ -1,34 +1,37 @@
 const express = require("express");
-const admin = require("firebase-admin");
 const router = express.Router();
-var serviceAccount = require("./../google_service_account/silvifrid-organic-auth-firebase-adminsdk-mbjpn-c7502c89ba.json");
+const { ClientCredentials, ResourceOwnerPassword, AuthorizationCode } = require('simple-oauth2');
 
+router.get("/", (req, res)=>{
 
-/*const app = admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
-});
+    const config = {
+        client: {
+          id: '1383539172068627',
+          secret: '0a14749bb5673a79961efc5486510719'
+        },
+        auth: {
+          tokenHost: 'https://api.instagram.com/oauth/authorize'
+        }
+    };
 
-app.auth().createUser({
-    email: 'user@example.com',
-    emailVerified: false,
-    phoneNumber: '+11234567890',
-    password: 'secretPassword',
-    displayName: 'John Doe',
-    photoURL: 'http://www.example.com/12345678/photo.png',
-    disabled: false,
-  })
-  .then((userRecord)=>{console.log('Successfully created new user:', userRecord.uid);})
-  .catch((error)=>console.log('Error creating new user:', error));
+    const client = new AuthorizationCode(config);
 
-
-
-
-
-/*router.post("/email", (req,res)=>{
-    auth.createUserWithEmailAndPassword("aaa@aaa.com","129jdsjoadsksla").catch(function(error){
-        res.send("Error en la autorizacion");
-        console.log(error);
+    const authorizatedURI = client.authorizeURL({
+       redirect_uri: "https://silvifrid-server.herokuapp.com/login/handleauth",
+       scope: "user_profile"
     })
-})*/
+
+    res.redirect(authorizatedURI);
+}) 
+
+
+router.get("/handleauth", (req, res)=>{
+  const tokenParams = {
+    code: '<code>',
+    redirect_uri: 'https://silvifrid-server.herokuapp.com/login/handleauth',
+    scope: '<scope>',
+  };
+})
+
 
 module.exports = router;
