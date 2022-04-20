@@ -27,7 +27,7 @@ router.get("/", (req, res)=>{
 
 router.get("/handleauth", (req, res)=>{
 
-  console.log(req.params("code"))
+  console.log(req.params.code)
 
   var data = [];
   req.on("data", (chunk)=>{
