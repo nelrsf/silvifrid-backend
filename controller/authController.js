@@ -28,10 +28,9 @@ router.get("/handleauth",function(req, res){
     }else{
       //console.log("ok, token = ", result.access_token);
       api.user('user_id', function(err, result, remaining, limit) {
-        console.log("error: ",err);
+        console.log("error: ", res.render(err));
         console.log(result);
       })
-      res.send("Ok");
     }
   })
 })
