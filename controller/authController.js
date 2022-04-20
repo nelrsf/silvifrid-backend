@@ -27,15 +27,8 @@ router.get("/", (req, res)=>{
 
 router.get("/handleauth", (req, res)=>{
 
-  console.log(req.params.code)
+  console.log(req.query.code)
 
-  var data = [];
-  req.on("data", (chunk)=>{
-    data.push(chunk);
-  });
-  req.on("end", ()=>{
-    console.log(data);
-  })
   const tokenParams = {
     code: "",
     redirect_uri: 'https://silvifrid-server.herokuapp.com/login/handleauth',
