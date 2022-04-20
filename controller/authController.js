@@ -29,7 +29,7 @@ router.get("/handleauth", (req, res)=>{
 
   var data = "";
   req.on("data", (chunk)=>{
-    data += chunk;
+    data = data + chunk;
   });
   req.on("end", ()=>{
     console.log(data);
