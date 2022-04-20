@@ -1,4 +1,40 @@
-const express = require("express");
+var express = require("express");
+var router = express.Router();
+var app = express();
+var api = require('instagram-node').instagram();
+
+api.use({
+  client_id: "1383539172068627",
+  client_secret: "0a14749bb5673a79961efc5486510719"
+});
+
+var redirect_uri = "https://silvifrid-server.herokuapp.com/login/handleauth";
+
+router.get("/", function(req, res){
+  res.redirect(
+    api.get_authorization_url(redirect_uri, {
+                                              scope: ['user_profile'],
+                                              state: ['a state']
+                                            })
+  );
+});
+
+
+router.get("/handleauth",function(req, res){
+  api.authorize_user(req.query.code, redirect_uri, function(err, result){
+    if(err){
+      console.log(err.body);
+      res.send("error");
+    }else{
+      console.log("ok, token = ", result.acces_token);
+      res.send("OK");
+    }
+  })
+})
+
+module.exports = router;
+
+/*const express = require("express");
 const router = express.Router();
 const { ClientCredentials, ResourceOwnerPassword, AuthorizationCode } = require('simple-oauth2');
 
@@ -31,13 +67,16 @@ router.get("/handleauth", (req, res)=>{
   const tokenParams = {
     tokenHost: "api.instagram.com",
     tokenPath: "/oauth/authorize",
+    Headers: {
+      "type": "x-wwww-urlencode/app"
+    },
     code: req.query.code,
     redirect_uri: 'https://silvifrid-server.herokuapp.com/login/handleauth',
     scope: 'user_profile',
   };
 
   try{
-      const accessToken = client.getToken(tokenParams,{json:true})
+      const accessToken = client.getToken(tokenParams)
                           .then((Token)=>{
                             console.log("El token de acceso es = ",Token);
                           }).catch((error)=>{
@@ -45,9 +84,11 @@ router.get("/handleauth", (req, res)=>{
                           });
       res.send("ok");
   }catch(error){
+
+
     res.send(error.message);
   }
 })
 
 
-module.exports = router;
+module.exports = router;*/
