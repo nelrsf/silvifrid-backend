@@ -38,7 +38,8 @@ router.get("/handleauth", (req, res)=>{
 
   try{
       const accessToken = client.getToken(tokenParams);
-      res.send(accessToken);
+      accessToken.then((token)=>{console.log(token)})
+      res.send("ok");
   }catch(error){
     res.send(error.message);
   }
