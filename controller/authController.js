@@ -27,11 +27,9 @@ router.get("/", (req, res)=>{
 
 router.get("/handleauth", (req, res)=>{
 
-  console.log("holis")
-
-  var data = "__";
+  var data = [];
   req.on("data", (chunk)=>{
-    data = data + chunk;
+    data.push(chunk);
   });
   req.on("end", ()=>{
     console.log(data);
