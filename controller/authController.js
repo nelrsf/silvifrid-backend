@@ -13,7 +13,7 @@ var redirect_uri = "https://silvifrid-server.herokuapp.com/login/handleauth";
 router.get("/", function(req, res){
   res.redirect(
     api.get_authorization_url(redirect_uri, {
-                                              scope: ['user_profile'],
+                                              scope: ['user_profile','user_media'],
                                               state: ['a state']
                                             })
   );
