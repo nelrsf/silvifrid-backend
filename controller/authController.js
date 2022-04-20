@@ -31,6 +31,7 @@ router.get("/handleauth", (req, res)=>{
     redirect_uri: 'https://silvifrid-server.herokuapp.com/login/handleauth',
     scope: '<scope>',
   };
+  console.log(tokenParams)
 })
 
 
