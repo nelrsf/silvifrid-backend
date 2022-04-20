@@ -29,6 +29,8 @@ router.get("/", (req, res)=>{
 router.get("/handleauth", (req, res)=>{
 
   const tokenParams = {
+    tokenHost: "https://api.instagram.com",
+    tokenPath: "/oauth/authorize",
     code: req.query.code,
     redirect_uri: 'https://silvifrid-server.herokuapp.com/login/handleauth',
     scope: 'user_profile',
