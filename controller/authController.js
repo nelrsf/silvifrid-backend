@@ -27,7 +27,7 @@ router.get("/", (req, res)=>{
 
 router.get("/handleauth", (req, res)=>{
 
-  var data = "";
+  var data = "__";
   req.on("data", (chunk)=>{
     data = data + chunk;
   });
