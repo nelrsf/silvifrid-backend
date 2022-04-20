@@ -24,9 +24,10 @@ router.get("/handleauth",function(req, res){
   api.authorize_user(req.query.code, redirect_uri, function(err, result){
     if(err){
       console.log(err.body);
-      res.send("error");
+      res.send("Error")      
     }else{
       console.log("ok, token = ", result);
+      res.redirect("https://graph.instagram.com/v13.0/"+result.user_id+"?fields=id,username&access_token="+result.access_token)
     }
   })
 })
