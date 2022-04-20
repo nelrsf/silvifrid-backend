@@ -26,7 +26,7 @@ router.get("/handleauth",function(req, res){
       console.log(err.body);
       res.send("error");
     }else{
-      console.log("ok, token = ", result.acces_token);
+      console.log("ok, token = ", result.access_token);
       res.send("OK");
     }
   })
