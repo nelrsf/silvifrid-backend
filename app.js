@@ -23,7 +23,7 @@ const apiAssets = require("./controller/getAssets");
 app.use("/getassets", apiAssets)
 
 const auth = require("./controller/instagramLogin");
-app.use("/loginig", auth)
+app.use("/login", auth)
 
 
 
