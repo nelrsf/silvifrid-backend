@@ -22,8 +22,8 @@ app.use("/getproducts", apiProducts)
 const apiAssets = require("./controller/getAssets");
 app.use("/getassets", apiAssets)
 
-const auth = require("./controller/authController");
-app.use("/login", auth)
+const auth = require("./controller/instagramLogin");
+app.use("/loginig", auth)
 
 
 
